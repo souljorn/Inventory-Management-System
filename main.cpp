@@ -1,4 +1,4 @@
-#include "Inventory.cpp"
+#include "Inventory.h"
 
 using namespace std;
 
