@@ -43,6 +43,7 @@ public:
 
   void sortByPrice();        							 //Sorts items by price
   void createItem(item);      						//Create an item by passing a item struct
+  void createItem(string name, int itemNumber, double price, int quantity);
   void deleteItemByName(string name);	//Delete item by name
   void deleteItemByItemNumber(int itemNumber);	//Deletes item by itemNumber
   bool isEmpty();             							//Return a bool if inventory is empty

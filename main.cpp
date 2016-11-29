@@ -18,5 +18,11 @@ int main(int argc, char const *argv[]) {
   current.printInventory();
   current.deleteItemByItemNumber(9);
   current.printInventory();
+  current.deleteItemByItemNumber(1);
+  current.deleteItemByItemNumber(22);
+  current.deleteItemByItemNumber(12);
+  current.deleteItemByItemNumber(12);
+  current.createItem("Screwdriver", 1234, 8.99, 23);
+  current.printInventory();
   return 0;
 }

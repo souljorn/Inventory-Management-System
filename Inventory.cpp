@@ -18,6 +18,7 @@ Inventory::Inventory() : inventoryList() {
 Inventory::~Inventory(){
 
 }
+
 //Create item
 void Inventory::createItem(item input){
 
@@ -29,9 +30,25 @@ void Inventory::createItem(item input){
 		cout << "Item Already Exists" << endl;
 }
 
+void Inventory::createItem(string name,int itemNumber, double price, int quantity){
+	item temp;
+
+	temp.name = name;
+	temp.itemNumber = itemNumber;
+	temp.price = price;
+	temp.quanity = quantity;
+	//Check if item name already exists
+	if(!isItemNameExist(temp.name) || !isItemNumberExist(temp.itemNumber)){
+		inventoryList.push_back(temp);
+	}
+	else
+		cout << "Item Already Exists" << endl;
+}
+
 void Inventory::deleteItemByName(string name){
 	int temp;
-	//If Item exists
+
+	//If Item exists then delete item using vector erase
 	if(isItemNameExist(name))
 	{
 		temp = findByNameReturnPos(name);
@@ -43,11 +60,14 @@ void Inventory::deleteItemByName(string name){
 	}
 }
 
-
 void Inventory::deleteItemByItemNumber(int itemNumber){
 	int temp;
-	//If Item exists
-	if(isItemNumberExist(itemNumber))
+
+	//If Item exists then delete
+	if(isEmpty()){
+		cout << "Inventory is Empty" << endl;
+	}
+	else if(isItemNumberExist(itemNumber))
 	{
 		temp = findByItemNumberReturnPos(itemNumber);
 		cout << inventoryList[temp].name << " was deleted" << endl;
@@ -58,12 +78,12 @@ void Inventory::deleteItemByItemNumber(int itemNumber){
 	}
 }
 
-
 void Inventory::findByName(string name){			//Find item by name uses the stl algorithm find
 
-	//create iterator
+	//create an int to hold vector position and an iterator
 	int vecPos;
 	vector<item>::iterator position;
+
 	//Set the position iterator equal to the found item
 	//Searches the inventory vector to find the string passed in name
 	position = find(inventoryList.begin(), inventoryList.end(),name);
@@ -76,6 +96,7 @@ void Inventory::findByName(string name){			//Find item by name uses the stl algo
 	else
 		cout << "Not Found" << endl;
 }
+
 int Inventory::findByNameReturnPos(string name){			//Find item by name uses the stl algorithm find
 	//Only use if item is known to exist
 
@@ -104,8 +125,6 @@ int Inventory::findByItemNumberReturnPos(int itemNumber){			//Find item by name 
 	return vecPos;
 }
 
-
-
 //Print Items in inventoryList
 void Inventory::printInventory(){
 	cout << "*********Item List**************" << endl;
@@ -118,7 +137,7 @@ void Inventory::printInventory(){
 	}
 }
 
-//isEmpty
+//isEmpty checks if inventoryList is empty
 bool Inventory::isEmpty(){
 	if(inventoryList.size() == 0)
 	{
@@ -223,6 +242,7 @@ bool compareByName(string &a, string &b)
 	return (a.compare(b) == 1) ? true : false;
 }
 
+//**********************Overloaded Operator ***********************
 //Operator overloading used for using find function, in the stl library
 bool operator==(const item& itemName, const string& name)
 				{
