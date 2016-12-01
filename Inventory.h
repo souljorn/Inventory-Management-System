@@ -20,7 +20,7 @@ int itemNumber;
 string name;
 string description;
 double price;
-int quanity;
+int quantity;
 };
 
 //**********************Compare Functions for Sort Functions******************
@@ -41,21 +41,26 @@ private:
 public:
   Inventory();
 
-  void sortByPrice();        							 //Sorts items by price
-  void createItem(item);      						//Create an item by passing a item struct
-  void createItem(string name, int itemNumber, double price, int quantity);
-  void deleteItemByName(string name);	//Delete item by name
-  void deleteItemByItemNumber(int itemNumber);	//Deletes item by itemNumber
-  bool isEmpty();             							//Return a bool if inventory is empty
-  void printInventory();      						//Prints Inventory
-  void populateInventory();   					//Populate some test data
-  void findByName(string name);             //Find item by name
-  int  findByNameReturnPos(string name);	 //Finds item by name and returns a int(vector position) do not use if item does not exist
-  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	 //Function will return a value of vector size if not found
+  void sortByPrice();        							          //Sorts items by price
+  void createItem(item);      						          //Create an item by passing a item struct
+  void createItem(string name, int itemNumber, double price, int quantity); //Create item
+  void updateName(string nameToChange, string newName);     //Updates name of item
+  void updateItemNumber(int numberToChange, int newNumber);
+  void updatePriceByName(string name, double newPrice);     //Find item by name and update price
+  void updateQuantityByName(string name, int quantity);     //Update
+  void updateQuantityByItemNumber(int itemNumber, int quantity);
+  void deleteItemByName(string name);	                //Delete item by name
+  void deleteItemByItemNumber(int itemNumber);	     //Deletes item by itemNumber
+  bool isEmpty();             							         //Return a bool if inventory is empty
+  void printInventory();      						          //Prints Inventory
+  void populateInventory();   					            //Populate some test data
+  void findByName(string name);                     //Find item by name
+  int  findByNameReturnPos(string name);	          //Finds item by name and returns a int(vector position) do not use if item does not exist
+  	  	  	  	  	  	  	  	  	  	  	  	  	//Function will return a value of vector size if not found
 
-  int findByItemNumberReturnPos(int itemNumber);
-  bool isItemNameExist(string name);		//Checks if name is already used
-  bool isItemNumberExist(int number);	//Checks if itemNumber is used
+  int findByItemNumberReturnPos(int itemNumber);   //Find Item by name and return int
+  bool isItemNameExist(string name);		          //Checks if name is already used
+  bool isItemNumberExist(int number);	            //Checks if itemNumber is used
   ~Inventory();
 
 };

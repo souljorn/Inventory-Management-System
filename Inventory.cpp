@@ -36,13 +36,68 @@ void Inventory::createItem(string name,int itemNumber, double price, int quantit
 	temp.name = name;
 	temp.itemNumber = itemNumber;
 	temp.price = price;
-	temp.quanity = quantity;
+	temp.quantity = quantity;
 	//Check if item name already exists
 	if(!isItemNameExist(temp.name) || !isItemNumberExist(temp.itemNumber)){
 		inventoryList.push_back(temp);
 	}
 	else
 		cout << "Item Already Exists" << endl;
+}
+
+void Inventory::updateName(string nameToChange, string newName ){
+
+	//Set pos to index of item that name needs to change
+	int pos = findByNameReturnPos(nameToChange);
+	//Set name to new name
+	inventoryList[pos].name = newName;
+}
+
+void Inventory::updateItemNumber(int numberToChange, int newNumber){
+
+	//Set pos to index of item that itemNumebr needs to change
+	int pos = findByItemNumberReturnPos(numberToChange);
+	//Set number to new name
+	inventoryList[pos].itemNumber = newNumber;
+}
+
+void Inventory::updatePriceByName(string name, double newPrice){
+
+	int pos = findByNameReturnPos(name);
+	if(newPrice >= 0){
+		inventoryList[pos].price = newPrice;
+	}
+	else{
+		cout << "Please Enter a valid number." << endl;
+	}
+}
+
+void Inventory::updateQuantityByName(string name, int quantity){
+
+	//Find item in inventory
+	int pos = findByNameReturnPos(name);
+
+	if(quantity >= 0){
+		inventoryList[pos].quantity = quantity;
+	}
+	else{
+			cout << "Please enter a valid qunatity.";
+	}
+
+}
+
+void Inventory::updateQuantityByItemNumber(int itemNumber, int quantity){
+
+	//Find item in inventory
+	int pos = findByItemNumberReturnPos(itemNumber);
+
+	if(quantity >= 0){
+		inventoryList[pos].quantity = quantity;
+	}
+	else{
+			cout << "Please enter a valid qunatity.";
+	}
+
 }
 
 void Inventory::deleteItemByName(string name){
@@ -91,7 +146,6 @@ void Inventory::findByName(string name){			//Find item by name uses the stl algo
 	{
 		vecPos = distance(inventoryList.begin(), position);
 		cout << "Found at index " << vecPos << endl;
-
 	}
 	else
 		cout << "Not Found" << endl;
@@ -133,7 +187,7 @@ void Inventory::printInventory(){
 		cout <<"| Item Number: " << inventoryList[i].itemNumber;
 		cout <<" | Name: " << inventoryList[i].name;
 		cout << " | Price: " << inventoryList[i].price;
-		cout <<" | Quantity: " << inventoryList[i].quanity << endl;
+		cout <<" | Quantity: " << inventoryList[i].quantity << endl;
 	}
 }
 
@@ -163,12 +217,14 @@ bool Inventory::isItemNameExist(string name){
 }
 
 bool Inventory::isItemNumberExist(int number){
+
 	//create an iterator
 	vector<item>::iterator position;
 
 	//set postion of iterator using find stl algorithm
 	position = find(inventoryList.begin(), inventoryList.end(), number);
 
+	//If position equals size of inventory list item does not exist
 	if(position != inventoryList.end())
 	{
 		return true;
@@ -186,40 +242,40 @@ void Inventory::populateInventory(){
 	temp.itemNumber = 1;
 	temp.name = "Hammer";
 	temp.price = 5.12;
-	temp.quanity = 12;
+	temp.quantity = 12;
 
 	createItem(temp);
 
 	temp.itemNumber = 22;
 	temp.name = "Hand Saw";
 	temp.price = 12.23;
-	temp.quanity = 5;
+	temp.quantity = 5;
 	createItem(temp);
 
 	temp.itemNumber = 9;
 	temp.name = "Drill";
 	temp.price = 36.23;
-	temp.quanity = 3;
+	temp.quantity = 3;
 	createItem(temp);
 
 	temp.itemNumber = 12;
 	temp.name = "Pliers";
 	temp.price = 15.19;
-	temp.quanity = 10;
+	temp.quantity = 10;
 	createItem(temp);
 
 	temp.itemNumber = 192;
 	temp.name = "Drill Bit";
 	temp.price = 1.13;
-	temp.quanity = 5;
+	temp.quantity = 5;
 	createItem(temp);
 
 	//Error checking duplicate name
-	temp.itemNumber = 192;
-	temp.name = "Drill Bit";
-	temp.price = 1.13;
-	temp.quanity = 5;
-	createItem(temp);
+	// temp.itemNumber = 192;
+	// temp.name = "Drill Bit";
+	// temp.price = 1.13;
+	// temp.quanity = 5;
+	// createItem(temp);
 
 }
 
