@@ -165,6 +165,24 @@ int Inventory::findByNameReturnPos(string name){			//Find item by name uses the 
 	return vecPos;
 }
 
+item Inventory::findByItemNameReturnItem(string name){
+	//Only use if item is known to exist
+
+	//create iterator
+	int vecPos;
+	vector<item>::iterator position;
+	//Set the position iterator equal to the found item
+	//Searches the inventory vector to find the string passed in name
+	position = find(inventoryList.begin(), inventoryList.end(),name);
+	//Find the position of item
+	vecPos = distance(inventoryList.begin(), position);
+  //Create temp item
+	item temp;
+	//Set Temp item to found item
+	temp = inventoryList[vecPos];
+	return temp;
+}
+
 int Inventory::findByItemNumberReturnPos(int itemNumber){			//Find item by name uses the stl algorithm find
 	//Only use if item is known to exist
 
@@ -179,9 +197,26 @@ int Inventory::findByItemNumberReturnPos(int itemNumber){			//Find item by name 
 	return vecPos;
 }
 
+item Inventory::findByItemNumberReturnItem(int itemNumber){			//Find item by name uses the stl algorithm find
+	//Only use if item is known to exist
+
+	//create iterator
+	int vecPos;
+	vector<item>::iterator position;
+	//Set the position iterator equal to the found item
+	//Searches the inventory vector to find the string passed in name
+	position = find(inventoryList.begin(), inventoryList.end(),itemNumber);
+	//Find the position of item
+	vecPos = distance(inventoryList.begin(), position);
+	item temp;
+	//Set Temp item to found item
+	temp = inventoryList[vecPos];
+	return temp;
+}
+
 //Print Items in inventoryList
 void Inventory::printInventory(){
-	cout << "*********Item List**************" << endl;
+	cout << "************Item List**************" << endl;
 
 	for(int i = 0; i < inventoryList.size(); i++){
 		cout <<"| Item Number: " << inventoryList[i].itemNumber;

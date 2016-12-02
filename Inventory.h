@@ -55,8 +55,10 @@ public:
   void printInventory();      						          //Prints Inventory
   void populateInventory();   					            //Populate some test data
   void findByName(string name);                     //Find item by name
-  int  findByNameReturnPos(string name);	          //Finds item by name and returns a int(vector position) do not use if item does not exist
+  int findByNameReturnPos(string name);	          //Finds item by name and returns a int(vector position) do not use if item does not exist
   	  	  	  	  	  	  	  	  	  	  	  	  	//Function will return a value of vector size if not found
+  item findByItemNameReturnItem(string name);        //Searches for item by name and returns the name of item
+  item findByItemNumberReturnItem(int itemNumber);  //Searches for item by item number
 
   int findByItemNumberReturnPos(int itemNumber);   //Find Item by name and return int
   bool isItemNameExist(string name);		          //Checks if name is already used
